@@ -32,6 +32,21 @@ namespace Тужилова_Чудо_Обувь
 
         private async void AuthView_Click(object sender, RoutedEventArgs e)
         {
+            if (CaptchaPanel.Visibility == Visibility.Visible)
+            {
+                if (string.IsNullOrWhiteSpace(TBCInput.Text) || TBCInput.Text.Trim().ToUpper() != _currentCaptchaCode)
+                {
+                    MessageBox.Show("Неверно введенная капча");
+                    AuthView.IsEnabled = false;
+                    await Task.Delay(10000);
+                    AuthView.IsEnabled = true;
+                    GenerateCaptcha();
+                    TBCInput.Text = "";
+                    return;
+                }
+
+            }
+
             string login = TBoxLogin.Text.Trim();
             string password = TBoxPassword.Text;
             if (login == "" || password == "")
@@ -53,20 +68,6 @@ namespace Тужилова_Чудо_Обувь
                 MessageBox.Show("Введены неверные данные");
                 GenerateCaptcha();
                 TBCInput.Text = "";
-                if (CaptchaPanel.Visibility == Visibility.Visible)
-                {
-                    if(TBCInput.EmptyOrWhiteSpace)
-                    if (TBCInput.Text.Trim().ToUpper() != _currentCaptchaCode)
-                    {
-                        MessageBox.Show("Неверно введенная капча");
-                        AuthView.IsEnabled = false;
-                        await Task.Delay(10000);
-                        AuthView.IsEnabled = true;
-                        GenerateCaptcha();
-                        TBCInput.Text = "";
-                        return;
-                    }
-                }
             }
         }
 
