@@ -18,9 +18,19 @@ namespace Тужилова_Чудо_Обувь
     /// <summary>
     /// Логика взаимодействия для Page1.xaml
     /// </summary>
-    public partial class Page1 : Page
+    public partial class ProductPage : Page
     {
-        public Page1(User user)
+        public ProductPage()
+        {
+            InitializeComponent();
+            var currentServices = Тужилова41Entities.GetContext().Product.ToList();
+            ServiceListView.ItemsSource = currentServices;
+            ComboType.SelectedIndex = 0;
+            UpdateServices();
+            TotalRecords = TableList.Count;
+        }
+
+        public ProductPage(User user)
         {
             InitializeComponent();
             FIOTB.Text = user.UserSurname + " " + user.UserName + " " + user.UserPatronymic;
@@ -33,13 +43,6 @@ namespace Тужилова_Чудо_Обувь
                 case 3:
                     RoleTB.Text = "Администратор"; break;
             }
-
-
-            var currentServices = Тужилова41Entities.GetContext().Product.ToList();
-            ServiceListView.ItemsSource = currentServices;
-            ComboType.SelectedIndex = 0;
-            UpdateServices();
-            TotalRecords = TableList.Count;
         }
 
         private void UpdateServices()
@@ -100,14 +103,29 @@ namespace Тужилова_Чудо_Обувь
             TBCount.Text = "кол-во " + CountRecords + " из " + TotalRecords.ToString();
         }
 
-        private void FIOTB_TextChanged(object sender, TextChangedEventArgs e)
+        List<OrderProduct> selectedOrderProducts = new List<OrderProduct>();
+        List<Product> selectedProducts = new List<Product>();
+        private Order currentOrder = new Order();
+        private OrderProduct currentProduct = new OrderProduct();
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
 
-        }
+            if(ServiceListView.SelectedIndex >= 0)
+            {
+                var prod = ServiceListView.SelectedItem as Product;
+                selectedProducts.Add(prod);
 
-        private void RoleTB_TextChanged(object sender, TextChangedEventArgs e)
-        {
+                var newOrderProd = new OrderProduct();
+                newOrderProd.OrderID = newOrderID;
+                newOrderProd.ProductArticleNumber = prod.ProductArticleNumber;
+                newOrderProd.Amount = 1;
 
+                var selOP = selectedOrderProducts.Where(p => Equals(p.ProductArticleNumber, prod.ProductArticleNumber));
+                if(selOP.Count()==0)
+                {
+
+                }
+            }
         }
     }
 }

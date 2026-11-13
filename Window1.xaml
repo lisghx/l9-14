@@ -1,0 +1,43 @@
+﻿<Window x:Class="Тужилова_Чудо_Обувь.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Тужилова_Чудо_Обувь"
+        mc:Ignorable="d"
+        Title="Оформление заказа" Height="450" Width="800" FontFamily="Comic Sans MS">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Дата формирования заказа" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="5,10,5,10"></TextBlock>
+        <DatePicker Name="OrderDP" Grid.Row="0" Grid.Column="1" Margin="0,5,0,5"></DatePicker>
+
+        <TextBlock Text="Дата доставки заказа" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="5,10,5,10"></TextBlock>
+        <DatePicker Grid.Row="1" Grid.Column="1" Margin="0,5,0,5"></DatePicker>
+
+        <TextBlock Text="ФИО клиента" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="5,10,5,10"></TextBlock>
+        <TextBox Name="ClientTB" Height="25" Margin="0,5,0,5" Grid.Row="2" Grid.Column="1" IsReadOnly="True"></TextBox>
+
+        <TextBlock Text="Номер заказа" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="5,10,5,10"></TextBlock>
+        <TextBox Name="TBOrderID" Height="25" Margin="0,5,0,5" Grid.Row="3" Grid.Column="1" IsReadOnly="True"></TextBox>
+
+        <TextBlock Text="Пункт выдачи" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="5,10,5,10"></TextBlock>
+        <ComboBox Name="PickupsCombo" Grid.Row="5" Grid.Column="1" Margin="0,5,0,5" Height="25" VerticalAlignment="Center">
+            <ComboBoxItem Content="Выберите пункт...."></ComboBoxItem>
+        </ComboBox>
+
+        <Button Name="SaveBtn" Click="SaveBtn_Click" Grid.Row="6" Grid.Column="1" Content="Сохранить" Width="150" Height="35" HorizontalAlignment="Center" Margin="0,10,0,10"></Button>
+    </Grid>
+</Window>

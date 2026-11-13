@@ -27,7 +27,10 @@ namespace Тужилова_Чудо_Обувь
         }
         private void GuestView_Click(object sender, RoutedEventArgs e)
         {
-
+            CaptchaPanel.Visibility = Visibility.Collapsed;
+            Manager.MainFrame.Navigate(new ProductPage());
+            TBoxLogin.Text = "";
+            TBoxPassword.Text = "";
         }
 
         private async void AuthView_Click(object sender, RoutedEventArgs e)
@@ -58,7 +61,7 @@ namespace Тужилова_Чудо_Обувь
             if (user != null)
             {
                 CaptchaPanel.Visibility = Visibility.Collapsed;
-                Manager.MainFrame.Navigate(new Page1(user));
+                Manager.MainFrame.Navigate(new ProductPage(user));
                 TBoxLogin.Text = "";
                 TBoxPassword.Text = "";
             }
